@@ -11,6 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\Broadcast;
+
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('mainChannel', function () {
+    return \App\Coordinates::query()->where('created_at', \Illuminate\Support\Carbon::now()->toDateString())->get();
 });

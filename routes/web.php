@@ -11,6 +11,11 @@
 |
 */
 
+use App\Events\CoordinatesCreated;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
+
+    broadcast(new CoordinatesCreated('my send data'));
     return view('welcome');
 });
